@@ -43,6 +43,7 @@ sub_objeto:
 	elemento DOIS_PONTOS INICIO_OBJ dado FIM_OBJ {}
 	| elemento DOIS_PONTOS INICIO_OBJ FIM_LINHA dado FIM_LINHA FIM_OBJ {}
 	| elemento DOIS_PONTOS INICIO_OBJ sub_objeto FIM_OBJ {}
+	| elemento DOIS_PONTOS vetor {}
 	;
 
 dado:
@@ -55,13 +56,14 @@ dado:
 
 vetor:
 	INICIO_VETOR elem_vetor FIM_VETOR {}
-	| INICIO_VETOR FIM_VETOR {}
-	| INICIO_VETOR elem_vetor VIRGULA vetor FIM_VETOR {}
+	| INICIO_VETOR elemento VIRGULA vetor FIM_VETOR {}
 	| INICIO_VETOR vetor FIM_VETOR {}
+	| INICIO_VETOR FIM_VETOR {}
 	;
 
 elem_vetor:
 	elemento {}
+	| vetor {}
 	| elemento VIRGULA elem_vetor {}
 	;
 	
